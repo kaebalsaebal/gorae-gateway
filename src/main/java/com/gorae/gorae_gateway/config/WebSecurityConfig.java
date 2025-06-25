@@ -33,7 +33,7 @@ public class WebSecurityConfig {
             httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource());
         })
         .csrf(AbstractHttpConfigurer::disable)
-        //.securityMatcher("/**")
+        .securityMatcher("/**")
         .sessionManagement(sessionManagementConfigurer -> {
             sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         })
@@ -61,6 +61,7 @@ public class WebSecurityConfig {
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         config.setAllowedHeaders(List.of("*"));
         config.setExposedHeaders(List.of("*"));
+        config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

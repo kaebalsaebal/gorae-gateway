@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,7 +22,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected  void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
         String path = request.getRequestURI();
-        if (!path.startsWith("/api/user/v1/auth/")) {
+        if (!path.startsWith("/api/user/v1/auth/") && !HttpMethod.OPTIONS.matches(request.getMethod())) {
 
             String jwtToken = jwtTokenValidator.getToken(request);
 

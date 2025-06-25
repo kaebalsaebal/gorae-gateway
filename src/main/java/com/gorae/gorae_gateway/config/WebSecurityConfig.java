@@ -33,7 +33,7 @@ public class WebSecurityConfig {
             httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource());
         })
         .csrf(AbstractHttpConfigurer::disable)
-        .securityMatcher("/**")
+        //.securityMatcher("/**")
         .sessionManagement(sessionManagementConfigurer -> {
             sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         })

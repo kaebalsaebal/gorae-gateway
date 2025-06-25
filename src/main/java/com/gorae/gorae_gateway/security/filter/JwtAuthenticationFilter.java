@@ -22,7 +22,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected  void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
         String path = request.getRequestURI();
-        if (!path.startsWith("/api/user/v1/auth/") && !HttpMethod.OPTIONS.matches(request.getMethod())) {
+        if (!path.startsWith("/api/user/v1/auth/")) {
 
             String jwtToken = jwtTokenValidator.getToken(request);
 

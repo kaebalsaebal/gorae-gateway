@@ -45,7 +45,10 @@ public class WebSecurityConfig {
                 .exceptionHandling(exceptionConfig ->
                         exceptionConfig.authenticationEntryPoint(authenticationEntryPoint)
                                        .accessDeniedHandler(accessDeniedHandler))
-        .authorizeHttpRequests(registry -> registry.requestMatchers("/api/user/v1/auth/**").permitAll().anyRequest().authenticated());
+        .authorizeHttpRequests(registry -> registry.requestMatchers("/api/user/v1/auth/**").permitAll().anyRequest().authenticated())
+        .authorizeHttpRequests(registry -> registry.requestMatchers("/api/post/v1/auth/**").permitAll().anyRequest().authenticated())
+        .authorizeHttpRequests(registry -> registry.requestMatchers("/api/notification/v1/auth/**").permitAll().anyRequest().authenticated())
+        .authorizeHttpRequests(registry -> registry.requestMatchers("/api/leaderboard/v1/auth/**").permitAll().anyRequest().authenticated());
 
         return http.build();
     }
